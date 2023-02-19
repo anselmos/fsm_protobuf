@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// The FSMSearch service definition.
+service FSMSearch{
+  // RPC service with request/response information
+  rpc AddNewFile (AddNewFileRequest) returns (AddNewFileResponse) {}
+}
+
+// The request message containing file path
+message AddNewFileRequest{
+  string path = 1;
+}
+
+// The response message returning if file has been added to search engine
+message AddNewFileResponse{
+  bool added = 1;
+}
