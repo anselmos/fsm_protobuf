@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import fsm_search_pb2 as fsm__search__pb2
+from fsm_proto import fsm_search_pb2 as fsm__proto_dot_fsm__search__pb2
 
 
 class FSMSearchStub(object):
@@ -17,8 +17,8 @@ class FSMSearchStub(object):
         """
         self.AddNewFile = channel.unary_unary(
                 '/FSMSearch/AddNewFile',
-                request_serializer=fsm__search__pb2.AddNewFileRequest.SerializeToString,
-                response_deserializer=fsm__search__pb2.AddNewFileResponse.FromString,
+                request_serializer=fsm__proto_dot_fsm__search__pb2.AddNewFileRequest.SerializeToString,
+                response_deserializer=fsm__proto_dot_fsm__search__pb2.AddNewFileResponse.FromString,
                 )
 
 
@@ -38,8 +38,8 @@ def add_FSMSearchServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'AddNewFile': grpc.unary_unary_rpc_method_handler(
                     servicer.AddNewFile,
-                    request_deserializer=fsm__search__pb2.AddNewFileRequest.FromString,
-                    response_serializer=fsm__search__pb2.AddNewFileResponse.SerializeToString,
+                    request_deserializer=fsm__proto_dot_fsm__search__pb2.AddNewFileRequest.FromString,
+                    response_serializer=fsm__proto_dot_fsm__search__pb2.AddNewFileResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -64,7 +64,7 @@ class FSMSearch(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/FSMSearch/AddNewFile',
-            fsm__search__pb2.AddNewFileRequest.SerializeToString,
-            fsm__search__pb2.AddNewFileResponse.FromString,
+            fsm__proto_dot_fsm__search__pb2.AddNewFileRequest.SerializeToString,
+            fsm__proto_dot_fsm__search__pb2.AddNewFileResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

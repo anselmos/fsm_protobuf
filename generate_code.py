@@ -2,8 +2,8 @@ from grpc_tools import protoc
 
 protoc.main((
     '',
-    '-I.',
-    '--python_out=./fsm_proto/.',
-    '--grpc_python_out=./fsm_proto/.',
-    'fsm_search.proto',
+    '-Iproto',
+    '--python_out=./',
+    '--grpc_python_out=./',
+    'proto/fsm_proto/fsm_search.proto',
 ))
