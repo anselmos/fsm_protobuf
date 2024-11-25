@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service FSMCleaner{
+  rpc RemoveFile (RemoveFileRequest) returns (RemoveFileResponse) {}
+}
+
+message RemoveFileRequest{
+  string path = 1;
+  string md5sum = 2;
+}
+
+message RemoveFileResponse{
+  bool removed = 1;
+  bool error = 2;
+}

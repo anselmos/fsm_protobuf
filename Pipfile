@@ -8,6 +8,7 @@ grpcio = "*"
 grpcio-tools = "*"
 setuptools = "*"
 wheel = "*"
+mypy-protobuf = "*"
 
 [dev-packages]
 

@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from fsm_proto import fsm_search_pb2 as fsm__proto_dot_fsm__search__pb2
+from fsm_proto import fsm_cleaner_pb2 as fsm__proto_dot_fsm__cleaner__pb2
 
 GRPC_GENERATED_VERSION = '1.68.0'
 GRPC_VERSION = grpc.__version__
@@ -18,15 +18,15 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in fsm_proto/fsm_search_pb2_grpc.py depends on'
+        + f' but the generated code in fsm_proto/fsm_cleaner_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class FSMSearchStub(object):
-    """The FSMSearch service definition.
+class FSMCleanerStub(object):
+    """The FSMCleaner service definition.
     """
 
     def __init__(self, channel):
@@ -35,18 +35,18 @@ class FSMSearchStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.AddNewFile = channel.unary_unary(
-                '/FSMSearch/AddNewFile',
-                request_serializer=fsm__proto_dot_fsm__search__pb2.AddNewFileRequest.SerializeToString,
-                response_deserializer=fsm__proto_dot_fsm__search__pb2.AddNewFileResponse.FromString,
+        self.RemoveFile = channel.unary_unary(
+                '/FSMCleaner/RemoveFile',
+                request_serializer=fsm__proto_dot_fsm__cleaner__pb2.RemoveFileRequest.SerializeToString,
+                response_deserializer=fsm__proto_dot_fsm__cleaner__pb2.RemoveFileResponse.FromString,
                 _registered_method=True)
 
 
-class FSMSearchServicer(object):
-    """The FSMSearch service definition.
+class FSMCleanerServicer(object):
+    """The FSMCleaner service definition.
     """
 
-    def AddNewFile(self, request, context):
+    def RemoveFile(self, request, context):
         """RPC service with request/response information
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -54,27 +54,27 @@ class FSMSearchServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FSMSearchServicer_to_server(servicer, server):
+def add_FSMCleanerServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'AddNewFile': grpc.unary_unary_rpc_method_handler(
-                    servicer.AddNewFile,
-                    request_deserializer=fsm__proto_dot_fsm__search__pb2.AddNewFileRequest.FromString,
-                    response_serializer=fsm__proto_dot_fsm__search__pb2.AddNewFileResponse.SerializeToString,
+            'RemoveFile': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveFile,
+                    request_deserializer=fsm__proto_dot_fsm__cleaner__pb2.RemoveFileRequest.FromString,
+                    response_serializer=fsm__proto_dot_fsm__cleaner__pb2.RemoveFileResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'FSMSearch', rpc_method_handlers)
+            'FSMCleaner', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('FSMSearch', rpc_method_handlers)
+    server.add_registered_method_handlers('FSMCleaner', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class FSMSearch(object):
-    """The FSMSearch service definition.
+class FSMCleaner(object):
+    """The FSMCleaner service definition.
     """
 
     @staticmethod
-    def AddNewFile(request,
+    def RemoveFile(request,
             target,
             options=(),
             channel_credentials=None,
@@ -87,9 +87,9 @@ class FSMSearch(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/FSMSearch/AddNewFile',
-            fsm__proto_dot_fsm__search__pb2.AddNewFileRequest.SerializeToString,
-            fsm__proto_dot_fsm__search__pb2.AddNewFileResponse.FromString,
+            '/FSMCleaner/RemoveFile',
+            fsm__proto_dot_fsm__cleaner__pb2.RemoveFileRequest.SerializeToString,
+            fsm__proto_dot_fsm__cleaner__pb2.RemoveFileResponse.FromString,
             options,
             channel_credentials,
             insecure,
